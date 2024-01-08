@@ -24,7 +24,7 @@ jobs:
         with:
           tag: ${{ env.date }}
           name: "Arch Linux Bootstrap ${{ env.date }}"
-          artifacts : "ArchWSLBootstrap.tar.gz"
+          artifacts : "ArchWSLBootstrap-*.tar.gz"
           token: "${{ secrets.GITHUB_TOKEN }}"
 
 
