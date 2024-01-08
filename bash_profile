@@ -1,8 +1,8 @@
 echo -e '\e[1;33mInitializing keyring\e[m'
+gpg-connect-agent reloadagent /bye
 pacman-key --init
 pacman-key --populate archlinux
-pacman -Syu
-pacman -S base
+pacman -Sy archlinux-keyring --noconfirm
 clear
 
 echo -e '\e[1;33mInstalling reflector to get fastest mirrors\e[m'

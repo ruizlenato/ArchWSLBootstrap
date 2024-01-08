@@ -54,9 +54,9 @@ configure() {
 
 compress() {
   echo -e '\e[1;33mBuilding bootstrap\e[m'
-
-  sudo tar -czvf ArchWSLBootstrap.tar.gz -C root.x86_64 . &>/dev/null
+  sudo chown -R root:root root.x86_64
   sudo tar -czvf ArchWSLBootstrap-$(date -u +%Y-%m-%d).tar.gz -C root.x86_64 . &>/dev/null
+  sudo chown root:root ArchWSLBootstrap-$(date -u +%Y-%m-%d).tar.gz
   printf "\033[A\033[K"
   echo -e '\e[1;32m✓\e[m Building bootstrap!'
   cleanup
