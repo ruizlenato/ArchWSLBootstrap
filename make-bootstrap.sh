@@ -18,7 +18,7 @@ start() {
 
 download() {
   echo -e '\e[1;33mDownloading Arch Linux rootfs\e[m'
-  wget https://mirrors.edge.kernel.org/archlinux/iso/latest/archlinux-bootstrap-x86_64.tar.gz -q
+  wget https://mirror.rackspace.com/archlinux/iso/latest/archlinux-bootstrap-x86_64.tar.zst -q
   printf "\033[A\033[K"
   echo -e '\e[1;32m✓\e[m Arch Linux rootfs downloaded!'
   extract
@@ -26,7 +26,7 @@ download() {
 
 extract() {
   echo -e '\e[1;33mExtracting Arch Linux rootfs\e[m'
-  sudo tar --xattrs --xattrs-include="security.capability" -zxpf archlinux-bootstrap-x86_64.tar.gz &>/dev/null
+  sudo tar --xattrs --xattrs-include="security.capability" -I zstd -xpf archlinux-bootstrap-x86_64.tar.zst &>/dev/null
   printf "\033[A\033[K"
   echo -e '\e[1;32m✓\e[m Extract Arch Linux rootfs!'
   configure
@@ -54,11 +54,10 @@ compress() {
   sudo chown root:root ArchWSLBootstrap-$(date -u +%Y-%m-%d).tar.gz
   printf "\033[A\033[K"
   echo -e '\e[1;32m✓\e[m Building bootstrap!'
-  cleanup
 }
 
 cleanup() {
-  sudo rm -rf archlinux-bootstrap-x86_64.tar.gz root.x86_64/
+  sudo rm -rf archlinux-bootstrap-x86_64.tar.zst root.x86_64/
   clear
   echo -e '\e[1;32mAll done.\e[m'
 }
